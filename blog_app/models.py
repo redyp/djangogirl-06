@@ -14,7 +14,8 @@ class Post(models.Model):
         return self.title
     
     def publish(self):
-        self.publish = timezone.now()
+        self.published = timezone.now()
+        self.save()
     
     def text_as_list(self) -> list:
         return self.text.split('\n')

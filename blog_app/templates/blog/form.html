@@ -5,6 +5,7 @@
         {% csrf_token %}
         {{form.as_p}}
         <button type="reset" >Reset</button>
+        <button type="submit" formaction="{% url 'save_as_draft' %}">Save as Draft</button>
         <button type="submit">Submit</button>
     </form>
 {% endblock content %}

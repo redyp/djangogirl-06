@@ -10,11 +10,12 @@
 <body>
     <h1>Hello World</h1>
     <h3><a href="{% url 'new_post' %}">Create New Post</a></h3>
+    <h3><a href="{% url 'draft_post' %}">Draft Post</a></h3>
     {% for post in posts %}
         <article>
             <h2>{{post.title|title}}</h2>
             <p>Author: {{post.author}}</p>
-            <p>Created: {{post.created}}</p>
+            <p>Published Date: {{post.published}}</p>
             {% for paragraf in post.text_as_list %}
                 <p>{{paragraf}}</p>
             {% endfor %}

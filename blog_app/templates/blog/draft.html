@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for draft in drafts %}
+        <article>
+            <h2>{{draft.title}}</h2>
+            <p>Author: {{draft.author}}</p>
+            <p>Created Date: {{draft.created}}</p>
+            {% for paragraf in draft.text_as_list %}
+                <p>{{paragraf}}</p>
+            {% endfor %}
+            <h3><a href="{% url 'publish_draft_post' pk=draft.pk %}">Publish</a></h3>
+        </article>
+    {% endfor %}
+{% endblock content %}
