@@ -9,6 +9,7 @@
             {% for paragraf in draft.text_as_list %}
                 <p>{{paragraf}}</p>
             {% endfor %}
+            <h3><a href="{% url 'edit_post' pk=draft.pk %}"></a></h3>
             <h3><a href="{% url 'publish_draft_post' pk=draft.pk %}">Publish</a></h3>
         </article>
     {% endfor %}

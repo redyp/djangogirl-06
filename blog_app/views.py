@@ -42,7 +42,9 @@ def save_as_draft_views(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            post.published = None
+            post.save()
             return redirect('home')
 
 def publish_draft_post_views(request, pk):
@@ -51,3 +53,17 @@ def publish_draft_post_views(request, pk):
         draft.publish()
         draft.save()
         return redirect('home')
+
+def edit_post_views(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'GET':
+        form = PostForm(instance=post)
+        return render(request, 'blog/form.html', {
+            'title': f'Form Edit Post - {post.title.title()}',
+            'form': form,
+        })
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
