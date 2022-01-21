@@ -66,3 +66,8 @@ def edit_post_views(request, pk):
         if form.is_valid():
             form.save()
             return redirect('home')
+
+def delete_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.delete()
+    return redirect('home')
