@@ -5,7 +5,7 @@ from blog_app.form import PostForm
 
 # Create your views here.
 def home_views(request):
-    posts = Post.objects.all()
+    posts = Post.objects.order_by('-created')
     if request.method == 'GET':
         return render(request, 'index.html', {
             'title': 'Blog Post',

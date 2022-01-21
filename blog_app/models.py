@@ -8,7 +8,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     text = models.TextField()
     created = models.DateTimeField(default=timezone.now)
-    publish = models.DateTimeField()
+    published = models.DateTimeField(null=True, blank=True)
 
     def __str__(self) -> str:
         return self.title
