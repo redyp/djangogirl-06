@@ -42,9 +42,7 @@ def save_as_draft_views(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.published = None
-            post.save()
+            form.save()
             return redirect('home')
 
 def publish_draft_post_views(request, pk):
@@ -61,6 +59,7 @@ def edit_post_views(request, pk):
         return render(request, 'blog/form.html', {
             'title': f'Form Edit Post - {post.title.title()}',
             'form': form,
+            'pk': pk,
         })
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)

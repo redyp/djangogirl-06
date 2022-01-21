@@ -4,8 +4,11 @@
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="reset" >Reset</button>
+        
+        {% if pk == None %}
+        <button type="reset">Reset</button>
         <button type="submit" formaction="{% url 'save_as_draft' %}">Save as Draft</button>
+        {% endif %}
         <button type="submit">Submit</button>
     </form>
 {% endblock content %}
